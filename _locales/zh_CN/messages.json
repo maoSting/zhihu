@@ -1,0 +1,10 @@
+{
+  "EXT_NAME": {
+    "message": "zhihu 助手",
+    "description": "扩展名称"
+  },
+  "EXT_DESC": {
+    "message": "记录浏览过历史记录",
+    "description": "扩展描述"
+  }
+}
