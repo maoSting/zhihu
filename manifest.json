@@ -9,13 +9,10 @@
   },
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "permissions": [
-    "tabs",
-    "alarms",
-    "notifications"
+    "tabs"
   ],
   "background": {
     "scripts": [
-      "static/vendor/require/require.js",
       "apps/background/background.js"
     ],
     "persistent": true

@@ -1,0 +1,14 @@
+.main {
+    min-height: 420px;
+    margin: 20px 20px;
+}
+.margin-five{
+    margin:20px 0 10px 0;
+}
+
+.text-vertical{
+    vertical-align: center;
+}
+.line-height-40{
+    height: 40px;
+}
