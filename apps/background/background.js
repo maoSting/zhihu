@@ -76,9 +76,8 @@ var BgPageInstance = (function () {
         let data = [];
 
         let objectStore = db.transaction('logs', 'readonly').objectStore('logs');
-
-        let keyRange = IDBKeyRange.bound(page > 1 ? page * size : page, page * size);
-        objectStore.openCursor(keyRange, 'prev').onsuccess = function (event) {
+        let keyRange = IDBKeyRange.bound((page - 1) * size + 1, (page - 1) * size + size);
+        objectStore.openCursor(keyRange, 'next').onsuccess = function (event) {
             let cursor = event.target.result;
             if (cursor) {
                 // cursor.value就是数据对象

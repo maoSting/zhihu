@@ -3,12 +3,7 @@ let cutdownVue = new Vue({
     devtools: true,
     data: {
         items: [],
-        current: null,
-        saveKey: "saveKey",
         layuiTool: null,
-        banTime: '00:00:00',
-        addTime: null,
-        addTitle: null,
     },
     created() {
         this.init();
@@ -19,22 +14,15 @@ let cutdownVue = new Vue({
         async init(e) {
             let that = this;
             let count = await this.getCount()
-            console.log('count');
-            console.log(count);
             this.layuiTool = layui.use(['laypage'], function () {
                 let laypage = layui.laypage;
                 //执行一个laydate实例
                 laypage.render({
                     elem: 'page',
-                    limit: 3,
+                    limit: 20,
                     count: count,
                     jump: async function (obj, first) {
-                        console.log('jump');
-                        console.log(obj);
-                        console.log(first);
                         that.items = await that.getData(obj.curr, obj.limit);
-                        console.log('that.items');
-                        console.log(that.items);
                     }
                 });
             });
@@ -61,7 +49,12 @@ let cutdownVue = new Vue({
         },
         formDate(microsecond) {
             let date = new Date(microsecond);
-            return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDay() + '  ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+            let month = (date.getMonth() + 1) >= 10 ? (date.getMonth() + 1) : '0' + (date.getMonth() + 1);
+            let day = date.getDay() >= 10 ? date.getDay() : '0' + date.getDay();
+            let hour = date.getHours() >= 10 ? date.getHours() : '0' + date.getHours();
+            let min = date.getMinutes() >= 10 ? date.getMinutes() : '0' + date.getMinutes();
+            let sec = date.getSeconds() >= 10 ? date.getSeconds() : '0' + date.getSeconds();
+            return date.getFullYear() + '-' + month + '-' + day + '  ' + hour + ':' + min + ':' + sec;
         }
     }
 });

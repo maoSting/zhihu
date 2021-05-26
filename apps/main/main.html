@@ -17,15 +17,16 @@
     <div v-if="items.length">
         <ul class="layui-timeline">
             <li class="layui-timeline-item" v-for="item in items">
+                <a :href="item.url" target="_blank">
                 <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
                 <div class="layui-timeline-content layui-text">
                     <h3 class="layui-timeline-title">{{formDate(item.date)}}</h3>
-                    <h4>{{item.title}}</h4>
+                    <h4><b>{{item.title}}</b></h4>
                     <p>
-                        {{item.url}}
-                        {{item.author}}
+                        <em>{{item.author}}</em>
                     </p>
                 </div>
+                </a>
             </li>
         </ul>
     </div>
@@ -39,7 +40,6 @@
             <div class="layui-col-xs8">
                 <button class="layui-btn layui-btn-radius layui-btn-primary" @click="openPage(2)">
                     {{getMessage('BTN_DONATION')}}
-                    捐赠
                 </button>
             </div>
             <div class="layui-col-xs4">
