@@ -71,43 +71,43 @@ var BgPageInstance = (function () {
         });
     }
 
-    let _getData = function (page = 1, pageSize) {
-        let pageSize = pageSize || 15;
+    let _getData = async function (page = 1, pageSize, resolve) {
+        let size = pageSize || 15;
         let data = [];
 
         let objectStore = db.transaction('logs', 'readonly').objectStore('logs');
-        let count = objectStore.count();
 
-        let keyRange = IDBKeyRange.bound(1, 10);
-        objectStore.openCursor(keyRange).onsuccess = function (event) {
-            var cursor = event.target.result;
+        let keyRange = IDBKeyRange.bound(page > 1 ? page * size : page, page * size);
+        objectStore.openCursor(keyRange, 'prev').onsuccess = function (event) {
+            let cursor = event.target.result;
             if (cursor) {
                 // cursor.value就是数据对象
-                // 游标没有遍历完，继续
                 data.push(cursor.value);
                 cursor.continue();
             } else {
                 // 如果全部遍历完毕...
+                resolve(data);
             }
         }
         return data;
     }
 
     // 获取总页数
-    let _getDataCount = function (callback) {
+    let _getDataCount = async function (resolve, reject) {
         console.log('_getDataCount');
+        console.log(resolve);
 
         let count = 0;
 
         let objectStore = db.transaction('logs', 'readonly').objectStore('logs');
         let countRequest = objectStore.count();
-        countRequest.onsuccess = function() {
+        countRequest.onsuccess = function () {
             count = countRequest.result;
-            console.log(countRequest.result);
-            callback(count);
+            resolve(count);
         }
-        console.log('count');
-        console.log(count);
+        countRequest.onerror = function () {
+            reject(count)
+        }
         return count;
     }
 
@@ -157,7 +157,7 @@ var BgPageInstance = (function () {
     return {
         init: _init,
         insertData: _insertData,
-        getData: _getData,
+        getRow: _getData,
         getDataCount: _getDataCount
     };
 })();
