@@ -1,10 +1,22 @@
 {
   "EXT_NAME": {
-    "message": "zhihu helper",
-    "description": "扩展名称"
+    "message": "知乎历史助手",
+    "description": "extension name"
   },
   "EXT_DESC": {
-    "message": "记录浏览过历史记录",
-    "description": "扩展描述"
+    "message": "The extension can generate browsing history when browsing answers to questions on the homepage of Zhihu.",
+    "description": "extension description"
+  },
+  "BTN_DONATION": {
+    "message": "Donation",
+    "description": "Donate button text"
+  },
+  "BTN_BUGS": {
+    "message": "Bugs",
+    "description": "Bug button text"
+  },
+  "BTN_OPEN": {
+    "message": "Open",
+    "description": "Open button text"
   }
 }

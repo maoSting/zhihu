@@ -1,4 +1,3 @@
-console.log('zhihu content');
 (function () {
     $("#TopstoryContent").on('click', '.ContentItem-more', function () {
         let parent = $(this).closest(".ContentItem");
@@ -18,19 +17,16 @@ console.log('zhihu content');
                 author: author,
             }
         }, res => {
-            console.log(res);
         });
     });
 
-    $(".SearchBar-askButton").after('<button type="button" class="Button SearchBar-askButton Button--primary Button--red dq-history">历史</button>');
+    $(".SearchBar-askButton").after('<button type="button" class="Button SearchBar-askButton Button--primary Button--red dq-history">History</button>');
 
     $(".AppHeader").on('click', '.dq-history', function () {
-        console.log('click history');
         chrome.runtime.sendMessage({
             type: 'open',
             data: {}
         }, res => {
-            console.log(res);
         });
     });
 })();

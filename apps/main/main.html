@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
-    <title>知乎助手</title>
+    <title>知乎历史助手</title>
     <link rel="stylesheet" href="../../static/vendor/layui/css/layui.css">
     <link rel="stylesheet" href="main.css">
     <script src="../../static/vendor/layui/layui.js"></script>
@@ -17,16 +17,17 @@
     <div v-if="items.length">
         <ul class="layui-timeline">
             <li class="layui-timeline-item" v-for="item in items">
-                <a :href="item.url" target="_blank">
                 <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                <div class="layui-timeline-content layui-text">
+                <div class="layui-timeline-content layui-text padding-five">
                     <h3 class="layui-timeline-title">{{formDate(item.date)}}</h3>
                     <h4><b>{{item.title}}</b></h4>
                     <p>
                         <em>{{item.author}}</em>
                     </p>
+                    <p>
+                        <button class="layui-btn layui-btn-primary" @click="openUrl(item.url)">{{getMessage('BTN_OPEN')}}</button>
+                    </p>
                 </div>
-                </a>
             </li>
         </ul>
     </div>
@@ -43,11 +44,26 @@
                 </button>
             </div>
             <div class="layui-col-xs4">
-                <a href="https://github.com/maoSting/zhihu/issues" target="_blank">有问题</a>
+                <a href="https://github.com/maoSting/zhihu/issues" target="_blank">{{getMessage('BTN_BUGS')}}</a>
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript" src="main.js"></script>
+<script language="JavaScript">
+    // google 分析
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-197029098-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
 </body>
 </html>

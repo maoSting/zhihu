@@ -55,6 +55,19 @@ let cutdownVue = new Vue({
             let min = date.getMinutes() >= 10 ? date.getMinutes() : '0' + date.getMinutes();
             let sec = date.getSeconds() >= 10 ? date.getSeconds() : '0' + date.getSeconds();
             return date.getFullYear() + '-' + month + '-' + day + '  ' + hour + ':' + min + ':' + sec;
+        },
+        openUrl(url) {
+            if (url.indexOf('https:') == -1) {
+                url = 'https:' + url;
+            }
+            chrome.tabs.create({
+                url: url,
+                active: true
+            });
+        },
+        getMessage(words, defaultMsg) {
+            defaultMsg = defaultMsg || [];
+            return chrome.i18n.getMessage(words, defaultMsg);
         }
     }
 });

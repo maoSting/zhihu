@@ -1,19 +1,20 @@
-console.log('zhihu background');
-
+/**
+ * background.js
+ *
+ * @date
+ */
 var BgPageInstance = (function () {
-
+    // db instance
     var db;
 
     let initMessage = function () {
         chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
-            sendResponse('我收到了你的来信')
-            console.log('接收了来自 content.js的消息', req)
             if (req.type == 'data') {
                 // 添加数据类 消息
                 _insertData(req.data.url, req.data.title, req.data.author);
             } else if (req.type == 'open') {
                 // 打开窗口类 消息
-                _openPage();
+                _openPage(1);
             }
         });
     }
@@ -24,7 +25,7 @@ var BgPageInstance = (function () {
 
 
         request.onerror = function (event) {
-            console.log("Problem opening DB.");
+            console.log("zhihu helper opening DB.");
         }
 
         request.onupgradeneeded = function (event) {
@@ -42,15 +43,14 @@ var BgPageInstance = (function () {
             objectStore.createIndex('date', 'date');
 
             objectStore.transaction.oncomplete = function (event) {
-                console.log("logs ObjectStore Created.");
+                console.log("zhihu helper logs ObjectStore Created.");
             }
         }
 
         request.onsuccess = function (event) {
             db = event.target.result;
-            console.log("DB OPENED.");
             db.onerror = function (event) {
-                console.log("FAILED TO OPEN DB.")
+                console.log("zhihu helper FAILED TO OPEN DB.")
             }
         }
 
@@ -58,10 +58,7 @@ var BgPageInstance = (function () {
 
     // 插入数据
     let _insertData = function (url, title, author) {
-        console.log('db _insertData');
-        console.log(db);
         let transaction = db.transaction("logs", "readwrite");
-        console.log(transaction);
         let objectStore = transaction.objectStore('logs');
         objectStore.add({
             url: url,
@@ -93,11 +90,7 @@ var BgPageInstance = (function () {
 
     // 获取总页数
     let _getDataCount = async function (resolve, reject) {
-        console.log('_getDataCount');
-        console.log(resolve);
-
         let count = 0;
-
         let objectStore = db.transaction('logs', 'readonly').objectStore('logs');
         let countRequest = objectStore.count();
         countRequest.onsuccess = function () {
@@ -115,9 +108,17 @@ var BgPageInstance = (function () {
      *
      * @private
      */
-    let _openPage = function () {
+    let _openPage = function (type) {
+        type = type || 1;
         let extensionId = chrome.runtime.id;
-        let url = 'apps/main/main.html';
+        let donateUrl = 'apps/donate/donate.html';
+        let mainUrl = 'apps/main/main.html';
+        let url = '';
+        if (type == 1) {
+            url = mainUrl;
+        } else {
+            url = donateUrl;
+        }
 
         chrome.tabs.query({windowId: chrome.windows.WINDOW_ID_CURRENT}, function (tabs) {
             let isOpened = false;
@@ -137,12 +138,17 @@ var BgPageInstance = (function () {
             if (!isOpened) {
                 chrome.tabs.create({
                     url: url,
-                    active: true
+                    active: true,
                 });
             } else {
                 chrome.tabs.update(tabId, {highlighted: true});
             }
         });
+    }
+
+    let _getMessage = function (words, defaultMsg) {
+        defaultMsg = defaultMsg || [];
+        return chrome.i18n.getMessage(words, defaultMsg);
     }
 
     /**
@@ -157,7 +163,9 @@ var BgPageInstance = (function () {
         init: _init,
         insertData: _insertData,
         getRow: _getData,
-        getDataCount: _getDataCount
+        openPage: _openPage,
+        getDataCount: _getDataCount,
+        getMessage: _getMessage
     };
 })();
 
