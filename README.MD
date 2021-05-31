@@ -13,7 +13,7 @@
 直接google web store 下载使用，点击该链接[https://chrome.google.com/webstore/detail/%E7%9F%A5%E4%B9%8E%E5%8E%86%E5%8F%B2%E5%8A%A9%E6%89%8B/omahbhljmcdlanacglbejbmnadecbkgm](https://chrome.google.com/webstore/detail/%E7%9F%A5%E4%B9%8E%E5%8E%86%E5%8F%B2%E5%8A%A9%E6%89%8B/omahbhljmcdlanacglbejbmnadecbkgm)
 
 ### 方法 2
-* 下载release文件，并解压
+* 进入release页面，下载 zhihu.zip 文件，并解压
 * chrome浏览器打开开发者模式
 * 加载解压的文件夹
 
