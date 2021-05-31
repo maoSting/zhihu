@@ -10,10 +10,12 @@
 ## 如何使用
 
 ### 方法 1
-直接google web store 下载使用，点击该链接
+直接google web store 下载使用，点击该链接[https://chrome.google.com/webstore/detail/%E7%9F%A5%E4%B9%8E%E5%8E%86%E5%8F%B2%E5%8A%A9%E6%89%8B/omahbhljmcdlanacglbejbmnadecbkgm](https://chrome.google.com/webstore/detail/%E7%9F%A5%E4%B9%8E%E5%8E%86%E5%8F%B2%E5%8A%A9%E6%89%8B/omahbhljmcdlanacglbejbmnadecbkgm)
 
 ### 方法 2
-
+* 下载release文件，并解压
+* chrome浏览器打开开发者模式
+* 加载解压的文件夹
 
 
 
@@ -25,7 +27,7 @@
 ## 未来计划
 > 现在功能基本可以满足自己的需求，看未来如果有100个人捐款10元，买个服务器做成在线的服务（有点影响个人隐私）。
  
-> 捐赠者免费使用在线服务1年，估计要是定价也就10元1年。
+> 捐赠者免费使用在线服务1年，要是定价估计也就10元1年。
 
 
 ## 感谢
