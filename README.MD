@@ -29,5 +29,10 @@
 ## 未来计划
 > 现在功能基本可以满足自己的需求，看未来捐赠情况修改计划
 
+
+## 捐赠支持一下
+
+![支付宝捐赠](./static/images/donate.jpg)
+
 ## 感谢
 * https://github.com/Ncnbb/well-cache
