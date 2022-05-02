@@ -68,13 +68,34 @@ var BgPageInstance = (function () {
         });
     }
 
+    /**
+     * 获取页数
+     *
+     * @param page
+     * @param pageSize
+     * @param resolve
+     * @returns {Promise<*[]>}
+     * @private
+     */
     let _getData = async function (page = 1, pageSize, resolve) {
         let size = pageSize || 15;
         let data = [];
 
+        // 获取行数
+        let countPromise = new Promise((resolve, reject) => {
+            _getDataCount(resolve, reject)
+        });
+        let count = 0;
+        await Promise.all([countPromise]).then(function (result){
+            count = result[0]
+        })
+
+        let start = count - ((page - 1) * size);
+        let end = count - page * size;
+
+        let keyRange = IDBKeyRange.bound(end, start, true, false);
         let objectStore = db.transaction('logs', 'readonly').objectStore('logs');
-        let keyRange = IDBKeyRange.bound((page - 1) * size + 1, (page - 1) * size + size);
-        objectStore.openCursor(keyRange, 'next').onsuccess = function (event) {
+        objectStore.openCursor(keyRange, 'prev').onsuccess = function (event) {
             let cursor = event.target.result;
             if (cursor) {
                 // cursor.value就是数据对象
