@@ -32,7 +32,7 @@
 
 ## 捐赠支持一下
 
-![支付宝捐赠](./static/images/donate.jpg)
+![支付宝捐赠](https://github.com/maoSting/zhihu/blob/dev/static/images/donate.jpg)
 
 ## 感谢
 * https://github.com/Ncnbb/well-cache
