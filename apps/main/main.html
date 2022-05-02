@@ -19,14 +19,18 @@
             <li class="layui-timeline-item" v-for="item in items">
                 <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
                 <div class="layui-timeline-content layui-text padding-five">
-                    <h3 class="layui-timeline-title">{{formDate(item.date)}}</h3>
-                    <h4><b>{{item.title}}</b></h4>
-                    <p>
-                        <em>{{item.author}}</em>
-                    </p>
-                    <p>
-                        <button class="layui-btn layui-btn-primary" @click="openUrl(item.url)">{{getMessage('BTN_OPEN')}}</button>
-                    </p>
+                    <div class="layui-row">
+                        <div class="layui-col-md9">
+                            <h3 class="layui-timeline-title">{{formDate(item.date)}}</h3>
+                            <h4><b>{{item.title}}</b></h4>
+                            <p>
+                                <em>{{item.author}}</em>
+                            </p>
+                        </div>
+                        <div class="layui-col-md3">
+                            <button class="layui-btn" @click="openUrl(item.url)">{{getMessage('BTN_OPEN')}}</button>
+                        </div>
+                    </div>
                 </div>
             </li>
         </ul>

@@ -14,5 +14,9 @@
   "BTN_BUGS": {
     "message": "有问题",
     "description": "报错按钮文本"
+  },
+  "BTN_OPEN": {
+    "message": "打开",
+    "description": "打开按钮文本"
   }
 }
