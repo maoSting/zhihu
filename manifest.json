@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "知乎历史助手",
   "default_locale": "zh_CN",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "在知乎首页浏览问题答案时无法产生浏览记录，该扩展可以生成浏览记录。",
   "icons": {
     "16": "static/images/icon_16.png"
