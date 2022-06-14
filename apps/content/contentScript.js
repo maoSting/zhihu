@@ -1,5 +1,5 @@
 (function () {
-    $("#TopstoryContent").on('click', '.ContentItem-more', function () {
+    $("#TopstoryContent").on('click', 'div.is-collapsed div.RichContent-inner', function () {
         let parent = $(this).closest(".ContentItem");
         let info = JSON.parse(parent.attr('data-zop'));
 
