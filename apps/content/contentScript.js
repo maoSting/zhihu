@@ -20,12 +20,14 @@
         });
     });
 
-    $(".SearchBar-askButton").after('<button type="button" class="Button SearchBar-askButton Button--primary Button--red dq-history">History</button>');
+    $(".SearchBar-tool").after('<button type="button" class="Button Button--primary Button--red superDQ-history">History</button>');
 
-    $(".AppHeader").on('click', '.dq-history', function () {
+    $(".AppHeader").on('click', '.superDQ-history', function () {
         chrome.runtime.sendMessage({
-            type: 'open',
-            data: {}
+	        type: 'data',
+	        data: {
+		        url: 'chrome://history',
+	        }
         }, res => {
         });
     });

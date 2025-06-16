@@ -1,22 +1,28 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "知乎历史助手",
   "default_locale": "zh_CN",
-  "version": "0.1.2",
+  "version": "3.0.1",
   "description": "在知乎首页浏览问题答案时无法产生浏览记录，该扩展可以生成浏览记录。",
   "icons": {
-    "16": "static/images/icon_16.png"
+    "16": "static/images/icon_16.png",
+    "32": "static/images/icon_32.png",
+    "48": "static/images/icon_48.png",
+    "128": "static/images/icon_128.png"
   },
-  "content_security_policy": "script-src 'self' 'sha256-OTVmNWU1M2Q4ZGZlMzAyM2NlM2RiZTI2YWYwZDU4ZjdhZDdlZWY4ZTU0ZGQ2OTQzNDE1NzBlNWRkNzIxNDkwNw==' 'sha256-a5AvkpqMcDlLRRutYpE7Gzqk/LS2A5yKN3KeY/esEN0=' 'unsafe-inline' 'unsafe-eval' https://ssl.google-analytics.com/ga.js; object-src 'self'",
   "permissions": [
-    "tabs"
+    "tabs",
+    "scripting"
   ],
   "background": {
-    "scripts": [
-      "apps/background/background.js"
-    ],
-    "persistent": true
+    "service_worker": "apps/background/background.js"
   },
+  "action": {
+    "default_popup": "apps/donate/donate.html"
+  },
+  "host_permissions": [
+    "https://www.zhihu.com/*"
+  ],
   "content_scripts": [
     {
       "matches": [
