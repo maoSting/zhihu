@@ -1,7 +1,6 @@
 # 知乎助手
-> 前端新手勿喷
 
-## get chroem ex
+## get chrome extension
 
 [get chrome extension](https://chromewebstore.google.com/detail/%E7%9F%A5%E4%B9%8E%E5%8E%86%E5%8F%B2%E5%8A%A9%E6%89%8B/omahbhljmcdlanacglbejbmnadecbkgm)
 
